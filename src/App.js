@@ -15,7 +15,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SearchIcon from '@mui/icons-material/Search';
 
-const drawerWidth = 240;
+const drawerWidth = 330;
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
