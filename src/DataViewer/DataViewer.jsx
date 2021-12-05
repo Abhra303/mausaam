@@ -4,6 +4,11 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import CloudIcon from '@mui/icons-material/Cloud';
+import NightsStayIcon from '@mui/icons-material/NightsStay';
+import NightlightIcon from '@mui/icons-material/Nightlight';
+import AirIcon from '@mui/icons-material/Air';
 
 const theme = createTheme({
     palette: {
@@ -46,6 +51,10 @@ const Main = styled('div')(({theme}) => ({
 }));
 
 export default function DataViewer (props) {
+
+    // useEffect(() => {
+    //     const baseUrl = 
+    // })
 
     return (
         <ThemeProvider theme={theme}>
