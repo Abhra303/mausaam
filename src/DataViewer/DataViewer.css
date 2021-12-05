@@ -1,7 +1,26 @@
 #divider {
     margin-bottom: 20px;
+    margin-top: 15px;
 }
-
+#divider2 {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+#divider3 {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+#divider4 {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+#divider5 {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
 #forecast {
     margin: 20px 0;
+}
+.value {
+    color: blue;
 }
