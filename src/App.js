@@ -1,4 +1,5 @@
 import './App.css';
+import DataViewer from './DataViewer/DataViewer';
 import * as React from 'react';
 import { styled, useTheme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,9 +22,9 @@ const drawerWidth = 330;
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.25),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.35),
   },
   marginLeft: 0,
   width: '100%',
@@ -80,6 +81,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     }),
   }),
 );
+
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -170,6 +173,7 @@ export default function App (props) {
           </IconButton>
         </DrawerHeader>
         <Divider />
+        <DataViewer />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
