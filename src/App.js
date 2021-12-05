@@ -15,6 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SearchIcon from '@mui/icons-material/Search';
+import MapContainer from './MapContainer/MapContainer';
 
 const drawerWidth = 330;
 
@@ -62,7 +63,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
+    // padding: theme.spacing(3),
+    padding: '0px',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -118,7 +122,7 @@ export default function App (props) {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', height: '100%',  width: '100%' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -131,7 +135,10 @@ export default function App (props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div"
+          <Typography 
+            variant="h6"
+            noWrap
+            component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             Mausaam
@@ -170,6 +177,7 @@ export default function App (props) {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        <MapContainer />
       </Main>
     </Box>
   );
