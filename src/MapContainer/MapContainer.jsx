@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMapGl, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Snackbar from '@mui/material/Snackbar';
@@ -17,9 +17,11 @@ export default function MapContainer (props) {
         latitude: 20,
         longitude: 77,
         zoom: 3,
-        bearing: 360,
+        bearing: 0,
         pitch: 0
     });
+
+    // const [searchResult, setSearchResult] = useState([]);
 
     const showError = (error) => {
         setToastStatus({
@@ -27,6 +29,28 @@ export default function MapContainer (props) {
             message: error.message
         });
     };
+
+    useEffect(() => {
+        if (props.searchInput) {
+            let locationToSearch = props.searchInput;
+            locationToSearch = locationToSearch.trim().split(' ').join('%20');
+            const fetchURI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locationToSearch}.json?access_token=${MAPBOX_TOKEN}&worldview=in`;
+            
+            fetch(fetchURI)
+            .then(res => res.json())
+            .then(result => {
+                console.log('Search result', result.features);
+                // setSearchResult(result.features);
+                const feature = result.features[0];
+                props.setMarkerLocation({
+                    longitude: parseFloat(feature.center[0]),
+                    latitude: parseFloat(feature.center[1])
+                });
+            }).catch(err => {
+                showError(err.message);
+            });
+        }
+    }, [props.searchInput]);
 
     const handleToastClose = (event, reason) => {
         if (reason === 'clickaway') return;
@@ -69,6 +93,24 @@ export default function MapContainer (props) {
                         <LocationOnIcon sx={{ color: 'red' }} />
                     </Marker>
                 }
+                {/* {
+                    searchResult.length && searchResult.map(result => (
+                        <Marker 
+                            latitude={parseFloat(result.center[1])}
+                            longitude={parseFloat(result.center[0])}
+                            key={result.id}
+                        >
+                            <LocationIcon
+                                style={{ color: 'blue', cursor: 'pointer' }}
+                                onClick={() => props.setMarkerLocation({
+                                    longitude: parseFloat(result.center[0]),
+                                    latitude: parseFloat(result.center[1])
+                                })}
+                                title={result.place_name}
+                            />
+                        </Marker>
+                    ))
+                } */}
             </ReactMapGl>
             <Snackbar
                 open={toastStatus.open}
