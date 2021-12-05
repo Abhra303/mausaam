@@ -1,6 +1,6 @@
 import './App.css';
 import DataViewer from './DataViewer/DataViewer';
-import * as React from 'react';
+import { useState } from 'react';
 import { styled, useTheme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -111,7 +111,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function App (props) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+  /* 
+    interface MarkerLocation {
+      latitude: float;
+      longitude: float
+    } | null
+  */
+  const [markerLocation, setMarkerLocation] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -173,11 +181,15 @@ export default function App (props) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <DataViewer />
+        <DataViewer markerLocation={markerLocation} />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <MapContainer />
+        <MapContainer
+          markerLocation={markerLocation}
+          setMarkerLocation={setMarkerLocation}
+          setOpen={setOpen}  
+        />
       </Main>
     </Box>
   );

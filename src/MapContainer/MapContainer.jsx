@@ -6,7 +6,6 @@ import { Alert } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN || '';
-console.log('MAPBOX_TOKEN', MAPBOX_TOKEN);
 
 export default function MapContainer (props) {
     const [toastStatus, setToastStatus] = useState({
@@ -40,10 +39,11 @@ export default function MapContainer (props) {
     const onClickOnMap = (pointerEvent) => {
         if (pointerEvent.type === 'click') {
             console.log('Pointer event on click', pointerEvent);
-            // props.setMarkerLocation({
-            //     longitude: pointerEvent.lngLat[0],
-            //     latitude: pointerEvent.lngLat[1]
-            // });
+            props.setMarkerLocation({
+                longitude: pointerEvent.lngLat[0],
+                latitude: pointerEvent.lngLat[1]
+            });
+            props.setOpen(true);
         }
     };
 
@@ -76,7 +76,7 @@ export default function MapContainer (props) {
                 onClose={handleToastClose}
             >
                 <Alert severity='error' onClose={handleToastClose} sx={{ width: '100%' }}>
-                    {toastStatus.message}
+                    {toastStatus.message || 'Oops! something went wrong!'}
                 </Alert>
             </Snackbar>
         </div>
