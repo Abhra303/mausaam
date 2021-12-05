@@ -15,16 +15,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SearchIcon from '@mui/icons-material/Search';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const drawerWidth = 330;
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.greish, 0.25),
+  backgroundColor: alpha(theme.palette.common.white, 0.25),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.greish, 0.35),
+    backgroundColor: alpha(theme.palette.common.white, 0.35),
   },
   marginLeft: 0,
   width: '100%',
@@ -60,17 +59,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const textTheme = createTheme({
-  typography: {
-    h6: {
-      fontWeight: 900,
-    }
-  },
-});
-
-textTheme.palette.primary.main = '#282458db';
-textTheme.palette.common.greish = '#e0e0e0';
-
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -99,8 +87,6 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  backgroundColor: '#fff',
-  color: theme.palette.primary.main,
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
@@ -134,7 +120,6 @@ export default function App (props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <ThemeProvider theme={textTheme} >
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -162,7 +147,6 @@ export default function App (props) {
           </Search>
         </Toolbar>
       </AppBar>
-      </ThemeProvider>
       <Drawer
         sx={{
           width: drawerWidth,

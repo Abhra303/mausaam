@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { styled, useTheme, alpha } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import './DataViewer.css';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -14,12 +10,39 @@ const theme = createTheme({
         primary: {
           main: '#282458db',
         }
-    }
+    },
+    typography: {
+        h4: {
+            fontWeight: 700,
+            paddingBottom: 20,
+            fontSize: 25,
+        },
+        h6: {
+            fontWeight: 500,
+            fontSize: 18,
+            opacity: 0.7,
+            marginBottom: 13,
+            marginTop: 9,
+        },
+        h2: {
+            fontWeight: 600,
+            opacity: 0.9,
+            marginTop: 15,
+            marginBottom: 24,
+            marginLeft: 10,
+            marginRight: 10,
+            fontSize: 35,
+        },
+    },
 });
 
 const Main = styled('div')(({theme}) => ({
-    backgroundColor: '#e0e0e0',
     color: theme.palette.primary.main,
+    width: '85%',
+    padding: 15,
+    margin: '20px auto',
+    borderRadius: 20,
+    boxShadow: '20px 20px 100px #d9d9d9,-20px -20px 100px #ffffff',
 }));
 
 export default function DataViewer (props) {
@@ -27,15 +50,16 @@ export default function DataViewer (props) {
     return (
         <ThemeProvider theme={theme}>
             <Main>
-                <Typography variant="h4">Location Name</Typography>
-                <Typography variant="h5">Region , Country</Typography>
-                <Divider />
-                <Typography>Current temp: 26 C</Typography>
+                <Typography variant="h2"> 26 C</Typography>
+                <Typography variant="h5">Location</Typography>
+                <Typography variant="h6">Region , Country</Typography>
+                <Divider id="divider"/>
                 <Typography>Wind speed: 32 mile/hr</Typography>
                 <Typography>Status: sunny</Typography>
                 <Typography>other stuff</Typography>
-                <Typography vairant="h5">Weather Forecast</Typography>
-                <Divider />
+            </Main>
+            <Main>
+                <Typography id="forecast" variant="h5">Weather Forecast</Typography>
                 <Typography>Current temp: 26 C</Typography>
                 <Typography>Wind speed: 32 mile/hr</Typography>
                 <Typography>Status: sunny</Typography>
